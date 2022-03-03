@@ -21,8 +21,8 @@
     "react-native-image-pan-zoom": "^2.1.12"
   },
   "peerDependencies": {
-    "react": "17.0.1",
-    "react-native": "0.63.3"
+    "react": "^17.0.1",
+    "react-native": "^0.63.3"
   },
   "devDependencies": {
     "@types/react": "17.0.1",
