@@ -73,9 +73,6 @@ export default class ImageViewer extends React.Component<Props, State> {
         useNativeDriver: !!this.props.useNativeDriver
       }).start();
     }
-    if (prevProps.imageUrls?.length !== this.props.imageUrls?.length) {
-      this.init(this.props);
-    }
   }
 
   /**
@@ -89,14 +86,13 @@ export default class ImageViewer extends React.Component<Props, State> {
     }
 
     // 给 imageSizes 塞入空数组
-    const imageSizes = this.state.imageSizes ?? [];
-    nextProps.imageUrls.forEach((imageUrl, i) => {
-      let nowImageSize = imageSizes[i];
-      imageSizes[i] = {
-        width: nowImageSize?.width ?? imageUrl.width ?? 0,
-        height: nowImageSize?.height ?? imageUrl.height ?? 0,
-        status: nowImageSize?.status ?? 'loading'
-      };
+    const imageSizes: IImageSize[] = [];
+    nextProps.imageUrls.forEach((imageUrl) => {
+      imageSizes.push({
+        width: imageUrl.width || 0,
+        height: imageUrl.height || 0,
+        status: 'loading'
+      });
     });
 
     this.setState(
